@@ -1,0 +1,230 @@
+{
+    "components": {
+        "atoms": {
+            "buttons": {
+                "userButton": {
+                    "menu": {
+                        "settings": "Налаштування",
+                        "settingsKey": "S",
+                        "APIKeys": "Ключі API",
+                        "logout": "Вийти"
+                    }
+                }
+            }
+        },
+        "molecules": {
+            "newChatButton": {
+                "newChat": "Новий чат"
+            },
+            "tasklist": {
+                "TaskList": {
+                    "title": "\ud83d\uddd2\ufe0f Список завдань",
+                    "loading": "Завантаження...",
+                    "error": "Сталася помилка"
+                }
+            },
+            "attachments": {
+                "cancelUpload": "Скасувати завантаження",
+                "removeAttachment": "Видалити вкладення"
+            },
+            "newChatDialog": {
+                "createNewChat": "Створити новий чат?",
+                "clearChat": "Це очистить поточні повідомлення та розпочне новий чат.",
+                "cancel": "Скасувати",
+                "confirm": "Підтвердити"
+            },
+            "settingsModal": {
+                "settings": "Налаштування",
+                "expandMessages": "Розгорнути повідомлення",
+                "hideChainOfThought": "Приховати Ланцюжок думки",
+                "darkMode": "Темний режим"
+            },
+            "detailsButton": {
+                "using": "Використання",
+                "used": "Використано"
+            },
+            "auth": {
+                "authLogin": {
+                    "title": "Увійдіть, щоб отримати доступ до додатка.",
+                    "form": {
+                        "email": "Адреса електронної пошти",
+                        "password": "Пароль",
+                        "noAccount": "Немає облікового запису?",
+                        "alreadyHaveAccount": "Вже є обліковий запис?",
+                        "signup": "Зареєструватися",
+                        "signin": "Увійти",
+                        "or": "Або",
+                        "continue": "Продовжити",
+                        "forgotPassword": "Забули пароль?",
+                        "passwordMustContain": "Ваш пароль повинен містити:",
+                        "emailRequired": "Електронна пошта - обов'язкове поле",
+                        "passwordRequired": "Пароль - обов'язкове поле"
+                    },
+                    "error": {
+                        "default": "Не вдається увійти.",
+                        "signin": "Спробуйте увійти за допомогою іншого облікового запису.",
+                        "oauthsignin": "Спробуйте увійти за допомогою іншого облікового запису.",
+                        "redirect_uri_mismatch": "URI перенаправлення не відповідає конфігурації додатка oauth.",
+                        "oauthcallbackerror": "Спробуйте увійти за допомогою іншого облікового запису.",
+                        "oauthcreateaccount": "Спробуйте увійти за допомогою іншого облікового запису.",
+                        "emailcreateaccount": "Спробуйте увійти за допомогою іншого облікового запису.",
+                        "callback": "Спробуйте увійти за допомогою іншого облікового запису.",
+                        "oauthaccountnotlinked": "Для підтвердження вашої особи увійдіть за допомогою того ж облікового запису, який ви використовували спочатку.",
+                        "emailsignin": "Електронного листа не вдалося відправити.",
+                        "emailverify": "Будь ласка, підтвердіть свою електронну пошту, на вашу нову електронну пошту було відправлено лист.",
+                        "credentialssignin": "Вхід не вдається. Перевірте, чи ви надали вірні дані.",
+                        "sessionrequired": "Будь ласка, увійдіть, щоб отримати доступ до цієї сторінки."
+                    }
+                },
+                "authVerifyEmail": {
+                    "almostThere": "Ви майже там! Ми відправили електронний лист на ",
+                    "verifyEmailLink": "Будь ласка, натисніть на посилання в цьому листі, щоб завершити реєстрацію.",
+                    "didNotReceive": "Не можу знайти лист?",
+                    "resendEmail": "Повторно відправити лист",
+                    "goBack": "Повернутися",
+                    "emailSent": "Лист успішно відправлено.",
+                    "verifyEmail": "Підтвердіть вашу електронну адресу"
+                },
+                "providerButton": {
+                    "continue": "Продовжити за допомогою {{provider}}",
+                    "signup": "Зареєструйтесь за допомогою {{provider}}"
+                },
+                "authResetPassword": {
+                    "newPasswordRequired": "Новий пароль - обов'язкове поле",
+                    "passwordsMustMatch": "Паролі повинні співпадати",
+                    "confirmPasswordRequired": "Підтвердження пароля - обов'язкове поле",
+                    "newPassword": "Новий пароль",
+                    "confirmPassword": "Підтвердження пароля",
+                    "resetPassword": "Скинути пароль"
+                },
+                "authForgotPassword": {
+                    "email": "Адреса електронної пошти",
+                    "emailRequired": "Електронна пошта - обов'язкове поле",
+                    "emailSent": "Будь ласка, перевірте адресу електронної пошти {{email}} для отримання інструкцій зі скидання пароля.",
+                    "enterEmail": "Введіть адресу електронної пошти, і ми надішлемо вам інструкції зі скидання пароля.",
+                    "resendEmail": "Повторно відправити лист",
+                    "continue": "Продовжити",
+                    "goBack": "Повернутися"
+                }
+            }
+        },
+        "organisms": {
+            "chat": {
+                "history": {
+                    "index": {
+                        "showHistory": "Показати історію",
+                        "lastInputs": "Останні введення",
+                        "noInputs": "Так пусто...",
+                        "loading": "Завантаження..."
+                    }
+                },
+                "inputBox": {
+                    "input": {
+                        "placeholder": "Введіть ваше повідомлення тут..."
+                    },
+                    "speechButton": {
+                        "start": "Почати запис",
+                        "stop": "Зупинити запис",
+                        "loading": "Підключення"
+                    },
+                    "SubmitButton": {
+                        "sendMessage": "Надіслати повідомлення",
+                        "stopTask": "Зупинити завдання"
+                    },
+                    "UploadButton": {
+                        "attachFiles": "Додати файли"
+                    },
+                    "waterMark": {
+                        "text": "Побудовано з"
+                    }
+                },
+                "Messages": {
+                    "index": {
+                        "running": "Виконується",
+                        "executedSuccessfully": "виконано успішно",
+                        "failed": "не вдалося",
+                        "feedbackUpdated": "Оновлення відгуку",
+                        "updating": "Оновлення"
+                    }
+                },
+                "dropScreen": {
+                    "dropYourFilesHere": "Перетягніть ваші файли сюди"
+                },
+                "index": {
+                    "failedToUpload": "Не вдалося завантажити",
+                    "cancelledUploadOf": "Скасовано завантаження",
+                    "couldNotReachServer": "Не вдалося підключитися до сервера",
+                    "continuingChat": "Продовження попереднього чату"
+                },
+                "settings": {
+                    "settingsPanel": "Панель налаштувань",
+                    "reset": "Скинути",
+                    "cancel": "Скасувати",
+                    "confirm": "Підтвердити"
+                }
+            },
+            "threadHistory": {
+                "sidebar": {
+                    "filters": {
+                        "FeedbackSelect": {
+                            "feedbackAll": "Відгук: Усі",
+                            "feedbackPositive": "Відгук: Позитивний",
+                            "feedbackNegative": "Відгук: Негативний"
+                        },
+                        "SearchBar": {
+                            "search": "Пошук"
+                        }
+                    },
+                    "DeleteThreadButton": {
+                        "confirmMessage": "Це видалить розмову, а також її повідомлення та елементи.",
+                        "cancel": "Скасувати",
+                        "confirm": "Підтвердити",
+                        "deletingChat": "Видалення чату",
+                        "chatDeleted": "Чат видалено"
+                    },
+                    "index": {
+                        "pastChats": "Минулі чати"
+                    },
+                    "ThreadList": {
+                        "empty": "Пусто...",
+                        "today": "Сьогодні",
+                        "yesterday": "Вчора",
+                        "previous7days": "Попередні 7 днів",
+                        "previous30days": "Попередні 30 днів"
+                    },
+                    "TriggerButton": {
+                        "closeSidebar": "Закрити бічну панель",
+                        "openSidebar": "Відкрити бічну панель"
+                    }
+                },
+                "Thread": {
+                    "backToChat": "Повернутися до чату",
+                    "chatCreatedOn": "Цей чат був створений"
+                }
+            },
+            "header": {
+                "chat": "Чат",
+                "readme": "Прочитай мене"
+            }
+        }
+    },
+    "hooks": {
+        "useLLMProviders": {
+            "failedToFetchProviders": "Не вдалося отримати постачальників:"
+        }
+    },
+    "pages": {
+        "Design": {},
+        "Env": {
+            "savedSuccessfully": "Успішно збережено",
+            "requiredApiKeys": "Необхідні ключі API",
+            "requiredApiKeysInfo": "Для використання цього додатка потрібні наступні ключі API. Ключі зберігаються в локальному сховищі вашого пристрою."
+        },
+        "Page": {
+            "notPartOfProject": "Ви не є частиною цього проекту."
+        },
+        "ResumeButton": {
+            "resumeChat": "Відновити чат"
+        }
+    }
+}
