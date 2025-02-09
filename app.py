@@ -1,41 +1,26 @@
-from langchain_openai import ChatOpenAI
+import asyncio
+from langchain_ollama.llms import OllamaLLM
 from langgraph.checkpoint.memory import MemorySaver
-
 import chainlit as cl
 from chainlit.input_widget import Select, Slider, TextInput
 import base64
-
-
 from langgraph.graph import StateGraph
 from langgraph.graph.message import MessagesState
 from langchain_core.messages import SystemMessage, AIMessage, HumanMessage
 
-
 def call_model(state: MessagesState):
-    messages = [SystemMessage(cl.user_session.get('system_message'))] + state['messages']
+    messages = [HumanMessage(content=msg.content) if isinstance(msg, HumanMessage) else msg for msg in state['messages']]
     llm = cl.user_session.get('llm')
     response = llm.invoke(messages)
     return {'messages': [response]}
 
 builder = StateGraph(MessagesState)
 builder.add_node('call_model', call_model)
-
 builder.set_entry_point('call_model')
 builder.set_finish_point('call_model')
-
 memory = MemorySaver()
 graph = builder.compile(checkpointer=memory)
 
-# from IPython.display import Image, display
-#
-# try:
-#     with open('graph.png', 'wb') as file:
-#         file.write(Image(graph.get_graph().draw_mermaid_png()).data)
-# except Exception:
-#     # This requires some extra dependencies and is optional
-#     pass
-
-# Function to encode the image
 def encode_image(image_path):
     with open(image_path, 'rb') as image_file:
         return base64.b64encode(image_file.read()).decode('utf-8')
@@ -51,13 +36,12 @@ def auth_callback(username: str, password: str):
 
 @cl.on_message
 async def on_message(msg: cl.Message):
-
     config = {'callbacks': [cl.LangchainCallbackHandler()], 'configurable': {'thread_id': msg.thread_id}}
     final_answer = cl.Message(content='')
 
     content = msg.content
-    if len(msg.elements) >0 :
-        content = [ {'type': 'text', 'text': msg.content} ]
+    if len(msg.elements) > 0:
+        content = [{'type': 'text', 'text': msg.content}]
         for element in msg.elements:
             if element.type == 'image':
                 base64_image = encode_image(element.path)
@@ -73,19 +57,22 @@ async def on_message(msg: cl.Message):
     await final_answer.send()
 
 async def setup_settings(restored_settings=None):
-    models = ['gpt-4-turbo', 'chatgpt-4o-latest', 'gpt-4o', 'gpt-4o-mini', 'gpt-4', 'gpt-3.5-turbo']
+    models = ['deepseek-r1:14b', 'other-ollama-models']
+    initial_model = 'deepseek-r1:14b' if restored_settings is None else restored_settings.get('Model')
+    if initial_model not in models:
+        initial_model = models[0]
     settings = await cl.ChatSettings(
         [
             Select(
                 id='Model',
-                label='OpenAI - Model',
+                label='Ollama - Model',
                 values=models,
-                initial_index=0 if restored_settings is None else models.index(restored_settings.get('Model')),
+                initial_index=models.index(initial_model),
             ),
             TextInput(
                 id='System Message',
-                label='OpenAI - System Message',
-                initial = (
+                label='Ollama - System Message',
+                initial=(
                     'You are a helpful assistant.' if restored_settings is None
                     else restored_settings.get('System Message')
                 ),
@@ -93,7 +80,7 @@ async def setup_settings(restored_settings=None):
             ),
             Slider(
                 id='Temperature',
-                label='OpenAI - Temperature',
+                label='Ollama - Temperature',
                 initial=0.7 if restored_settings is None else restored_settings.get('Temperature'),
                 min=0,
                 max=1,
@@ -110,11 +97,7 @@ async def start():
 
 @cl.on_settings_update
 async def setup_agent(settings):
-    llm = ChatOpenAI(
-        streaming=True,
-        model_name=settings['Model'],
-        temperature=settings['Temperature']
-    )
+    llm = OllamaLLM(model=settings['Model'])
     cl.user_session.set('llm', llm)
     cl.user_session.set('system_message', settings['System Message'])
 
